@@ -269,6 +269,7 @@ nav{
   transition:transform .3s,box-shadow .3s;
   position:relative;
   isolation:isolate;
+  cursor:pointer;
 }
 .svc-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.14)}
 /* Image top — tall & vertical */
@@ -344,6 +345,85 @@ nav{
   width:auto;margin:0;
 }
 .svc-link:hover{color:var(--orange);border-color:var(--orange);transform:none}
+
+/* ── SERVICE CATALOG MODAL ── */
+.svc-modal-overlay{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(34,14,74,.85);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem 1.2rem;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s;
+}
+.svc-modal-overlay.open{opacity:1;pointer-events:auto}
+.svc-modal{
+  background:#fff;border-radius:20px;
+  width:100%;max-width:880px;max-height:90vh;
+  overflow-y:auto;
+  position:relative;
+  transform:translateY(20px) scale(.98);
+  transition:transform .25s;
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+.svc-modal-overlay.open .svc-modal{transform:translateY(0) scale(1)}
+.svc-modal-close{
+  position:absolute;top:1rem;right:1rem;z-index:10;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--navy);color:#fff;border:none;
+  font-size:1.4rem;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.svc-modal-close:hover{background:var(--orange)}
+.svc-modal-header{padding:2.2rem 2.2rem 1rem}
+.svc-modal-header .svc-tag{text-align:left;margin:0 0 .4rem;max-width:none}
+.svc-modal-header h3{
+  font-family:"Montserrat",sans-serif;font-weight:800;
+  font-size:1.7rem;color:var(--navy);line-height:1.2;margin-bottom:.5rem;
+}
+.svc-modal-header p{font-size:.88rem;color:var(--mid);line-height:1.65;max-width:640px}
+.svc-modal-slider{
+  display:flex;align-items:center;gap:.8rem;
+  padding:1rem 2.2rem;
+}
+.svc-modal-track-wrap{flex:1;overflow:hidden;border-radius:14px}
+.svc-modal-track{display:flex;transition:transform .4s ease}
+.svc-modal-slide{
+  min-width:100%;position:relative;
+  aspect-ratio:16/9;background:var(--gray);
+}
+.svc-modal-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.svc-modal-slide .svc-modal-slide-cap{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(to top,rgba(34,14,74,.85),transparent);
+  color:#fff;font-family:"Montserrat",sans-serif;font-size:.8rem;font-weight:600;
+  padding:1.6rem 1.2rem .8rem;
+}
+.svc-modal-nav{
+  flex:none;width:44px;height:44px;border-radius:50%;
+  background:var(--gray2);border:none;cursor:pointer;
+  font-size:1.3rem;color:var(--navy);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,color .2s;
+}
+.svc-modal-nav:hover{background:var(--orange);color:#fff}
+.svc-modal-dots{
+  display:flex;gap:.5rem;justify-content:center;
+  padding:.5rem 2.2rem 2.2rem;
+}
+.svc-modal-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gray2);border:none;cursor:pointer;padding:0;
+  transition:background .2s,transform .2s;
+}
+.svc-modal-dot.active{background:var(--orange);transform:scale(1.3)}
+@media(max-width:600px){
+  .svc-modal-header{padding:1.6rem 1.4rem .8rem}
+  .svc-modal-slider{padding:.8rem 1.4rem}
+  .svc-modal-dots{padding:.5rem 1.4rem 1.6rem}
+  .svc-modal-nav{width:36px;height:36px}
+}
 /* ── PROJECTS ── */
 #projects{
   padding:7rem 5%;background:var(--navy);
@@ -705,7 +785,7 @@ footer{
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1 class="hero-h1">Somos Expertos<br>en <span>Industria</span><br>y Construcción</h1>
+    <h1 class="hero-h1">Expertos en <span>Racks</span><br>de Industria<br>Automotriz</h1>
     <p class="hero-p">Desde 2003, YESAC entrega velocidad y calidad sin compromiso — desde construcción integral hasta productos industriales de precisión en todo el continente americano.</p>
     <div class="hero-actions">
       <a href="#services" class="btn-orange">Nuestros Servicios →</a>
@@ -714,16 +794,13 @@ footer{
   </div>
   <div class="hero-stats-bar">
     <div class="hsb-item">
-      <div><div class="hsb-val">22+</div><div class="hsb-lbl">Años de Experiencia</div></div>
+      <div><div class="hsb-val">14</div><div class="hsb-lbl">Años en México</div></div>
     </div>
     <div class="hsb-item">
-      <div><div class="hsb-val">5</div><div class="hsb-lbl">Plantas Globales</div></div>
+      <div><div class="hsb-val">2</div><div class="hsb-lbl">Plantas en México</div></div>
     </div>
     <div class="hsb-item">
-      <div><div class="hsb-val">3,000+</div><div class="hsb-lbl">Unidades / Año</div></div>
-    </div>
-    <div class="hsb-item">
-      <div><div class="hsb-val">0.74</div><div class="hsb-lbl">Índice EMR</div></div>
+      <div><div class="hsb-val">6,000+</div><div class="hsb-lbl">Racks al Año</div></div>
     </div>
   </div>
 </section>
@@ -755,32 +832,6 @@ footer{
   </div>
 </section>
 
-<!-- ── COUNTERS ── -->
-<section id="counters">
-  <div class="counters-grid">
-    <div class="counter-item sr">
-      <span class="counter-icon">💰</span>
-      <div class="counter-val">$135M</div>
-      <div class="counter-lbl">Ingresos 2025</div>
-    </div>
-    <div class="counter-item sr">
-      <span class="counter-icon">🏭</span>
-      <div class="counter-val">3,000+</div>
-      <div class="counter-lbl">Unidades / Año</div>
-    </div>
-    <div class="counter-item sr">
-      <span class="counter-icon">🔩</span>
-      <div class="counter-val">80+</div>
-      <div class="counter-lbl">Componentes Auto</div>
-    </div>
-    <div class="counter-item sr">
-      <span class="counter-icon">📈</span>
-      <div class="counter-val">23%</div>
-      <div class="counter-lbl">CAGR de Ingresos</div>
-    </div>
-  </div>
-</section>
-
 <!-- ── SERVICES ── -->
 <section id="services">
   <div class="section-head sr">
@@ -789,20 +840,20 @@ footer{
     <p>Desde construcción llave en mano hasta ingeniería de precisión. YESAC cubre el espectro completo de la industria.</p>
   </div>
   <div class="services-grid">
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="racks" role="button" tabindex="0">
       <div class="svc-img-wrap">
         <img class="svc-img" src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&auto=format&fit=crop&q=80" alt="Diseño y Construcción">
       
-        <div class="svc-icon-circle"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="svc-icon-circle"><svg viewBox="0 0 24 24"><path d="M4 2v20M20 2v20M4 8h16M4 16h16"/><rect x="7" y="9.5" width="4" height="5"/><rect x="13" y="9.5" width="4" height="5"/><rect x="7" y="17.5" width="4" height="4"/><rect x="13" y="17.5" width="4" height="4"/></svg></div>
       </div>
       <div class="svc-body">
         <span class="svc-tag">Construcción</span>
-        <div class="svc-title">Diseño y Construcción</div>
+        <div class="svc-title">Diseño y Construcción de Racks Automotrices</div>
         <div class="svc-desc">Entrega completa desde el diseño de ingeniería hasta la obra terminada, bajo un solo contrato.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="llave" role="button" tabindex="0">
       <div class="svc-img-wrap">
         <img class="svc-img" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=700&auto=format&fit=crop&q=80" alt="Construcción Llave en Mano">
       
@@ -812,10 +863,10 @@ footer{
         <span class="svc-tag">Construcción</span>
         <div class="svc-title">Construcción Llave en Mano</div>
         <div class="svc-desc">Diseño, procura y construcción — instalaciones listas para operar desde el primer día.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="epc" role="button" tabindex="0">
       <div class="svc-img-wrap">
         <img class="svc-img" src="https://www.hlcsac.com/public/images/blog/2021/07/shutterstock_704715226-800x600.png" alt="Proyectos EPC">
       
@@ -825,10 +876,10 @@ footer{
         <span class="svc-tag">Ingeniería</span>
         <div class="svc-title">Proyectos EPC</div>
         <div class="svc-desc">Ingeniería, Procura y Construcción para proyectos industriales complejos a gran escala.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="mecanica" role="button" tabindex="0">
       <div class="svc-img-wrap">
         <img class="svc-img" src="https://www.uadec.mx/wp-content/uploads/2025/09/Ingenier%C3%ADa-Mecatr%C3%B3nica_.jpg" alt="Mecánica y Eléctrica">
       
@@ -838,23 +889,23 @@ footer{
         <span class="svc-tag">Especialidades</span>
         <div class="svc-title">Mecánica y Eléctrica</div>
         <div class="svc-desc">HVAC, sistemas eléctricos, plomería e instrumentación y control industrial.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="facility" role="button" tabindex="0">
       <div class="svc-img-wrap">
-        <img class="svc-img" src="https://images.squarespace-cdn.com/content/v1/53fbdd40e4b0c8b470d5c6aa/f141e90f-5361-46d4-a1de-2e2cc11af403/automotive+coil+spring+handling+unit" alt="Handling Units Automotrices">
-      
-        <div class="svc-icon-circle"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8zM5.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM18.5 21a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"/></svg></div>
+        <img class="svc-img" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=700&auto=format&fit=crop&q=80" alt="Facility">
+
+        <div class="svc-icon-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
       </div>
       <div class="svc-body">
-        <span class="svc-tag">Manufactura</span>
-        <div class="svc-title">Handling Units Automotrices</div>
-        <div class="svc-desc">Más de 3,000 unidades de manejo automotriz fabricadas y entregadas anualmente.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <span class="svc-tag">Mantenimiento</span>
+        <div class="svc-title">Facility</div>
+        <div class="svc-desc">Mantenimiento y gestión integral de instalaciones: soporte mecánico, eléctrico, limpieza industrial y operación continua para que tu planta nunca se detenga.</div>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
-    <div class="svc-card sr">
+    <div class="svc-card sr" data-svc="estructura" role="button" tabindex="0">
       <div class="svc-img-wrap">
         <img class="svc-img" src="https://images.squarespace-cdn.com/content/v1/53fbdd40e4b0c8b470d5c6aa/83eac20e-7fa2-41e7-95fa-baa601809190/construction_work_in_progressjpg" alt="Obra Estructural en Acero">
       
@@ -862,9 +913,9 @@ footer{
       </div>
       <div class="svc-body">
         <span class="svc-tag">Estructura</span>
-        <div class="svc-title">Obra Estructural en Acero</div>
+        <div class="svc-title">Fabricación e Instalación de Estructura</div>
         <div class="svc-desc">Erección de acero, concreto y acabados para instalaciones industriales y comerciales.</div>
-        <a href="#contact" class="svc-link">Saber Más →</a>
+        <a href="javascript:void(0)" class="svc-link">Ver Proyectos →</a>
       </div>
     </div>
   </div>
@@ -948,12 +999,16 @@ footer{
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/yFnHsMYL/4.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/vvms7g8Q/5.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/FbzgQ49b/6.png" alt="Cliente YESAC"></div>
+      <div class="mq-item"><img class="mq-logo" src="logos_nuevos/7.png" alt="Polaris"></div>
+      <div class="mq-item"><img class="mq-logo" src="logos_nuevos/8.png" alt="Yokohama"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/PG86CXqT/01.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/9H0FZSfc/2.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/sp5YLkhN/3.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/yFnHsMYL/4.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/vvms7g8Q/5.png" alt="Cliente YESAC"></div>
       <div class="mq-item"><img class="mq-logo" src="https://i.ibb.co/FbzgQ49b/6.png" alt="Cliente YESAC"></div>
+      <div class="mq-item"><img class="mq-logo" src="logos_nuevos/7.png" alt="Polaris"></div>
+      <div class="mq-item"><img class="mq-logo" src="logos_nuevos/8.png" alt="Yokohama"></div>
     </div>
   </div>
 </section>
@@ -1030,7 +1085,7 @@ footer{
       <div class="contact-data">
         <div class="cd-row">
           <div class="cd-icon">📞</div>
-          <div><div class="cd-lbl">Teléfono</div></div>
+          <div><div class="cd-lbl">Teléfono</div><div class="cd-val"><a href="tel:812201731" style="color:inherit;text-decoration:none">81 2201 731</a></div></div>
         </div>
         <div class="cd-row">
           <div class="cd-icon">📍</div>
@@ -1054,11 +1109,12 @@ footer{
         <label>Servicio de Interés</label>
         <select>
           <option value="">Selecciona...</option>
-          <option>Diseño y Construcción</option>
+          <option>Diseño y Construcción de Racks Automotrices</option>
           <option>Construcción Llave en Mano</option>
           <option>Proyectos EPC</option>
-          <option>Handling Units</option>
-          <option>Estructuras de Acero</option>
+          <option>Mecánica y Eléctrica</option>
+          <option>Facility</option>
+          <option>Fabricación e Instalación de Estructura</option>
           <option>Otro</option>
         </select>
       </div>
@@ -1081,11 +1137,135 @@ footer{
   <div class="footer-copy">© 2025 YESAC Corp. Todos los derechos reservados.</div>
 </footer>
 
+<!-- ── SERVICE CATALOG MODAL ── -->
+<div class="svc-modal-overlay" id="svcModalOverlay">
+  <div class="svc-modal">
+    <button class="svc-modal-close" id="svcModalClose" aria-label="Cerrar">&times;</button>
+    <div class="svc-modal-header">
+      <span class="svc-tag" id="svcModalTag"></span>
+      <h3 id="svcModalTitle"></h3>
+      <p id="svcModalDesc"></p>
+    </div>
+    <div class="svc-modal-slider">
+      <button class="svc-modal-nav" id="svcModalPrev" aria-label="Anterior">‹</button>
+      <div class="svc-modal-track-wrap">
+        <div class="svc-modal-track" id="svcModalTrack"></div>
+      </div>
+      <button class="svc-modal-nav" id="svcModalNext" aria-label="Siguiente">›</button>
+    </div>
+    <div class="svc-modal-dots" id="svcModalDots"></div>
+  </div>
+</div>
+
 <script>
 const obs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");obs.unobserve(e.target)}});
 },{threshold:.1});
 document.querySelectorAll(".sr,.sr-l,.sr-r").forEach(el=>obs.observe(el));
+
+/* ── SERVICE CATALOG MODAL ── */
+const svcCatalog = {
+  racks: {
+    tag: "Construcción",
+    title: "Diseño y Construcción de Racks Automotrices",
+    desc: "Placeholder — próximamente galería real de proyectos de racks automotrices entregados por YESAC.",
+    items: 6
+  },
+  llave: {
+    tag: "Construcción",
+    title: "Construcción Llave en Mano",
+    desc: "Placeholder — próximamente galería real de proyectos llave en mano entregados por YESAC.",
+    items: 6
+  },
+  epc: {
+    tag: "Ingeniería",
+    title: "Proyectos EPC",
+    desc: "Placeholder — próximamente galería real de proyectos EPC entregados por YESAC.",
+    items: 6
+  },
+  mecanica: {
+    tag: "Especialidades",
+    title: "Mecánica y Eléctrica",
+    desc: "Placeholder — próximamente galería real de proyectos de mecánica y eléctrica entregados por YESAC.",
+    items: 6
+  },
+  facility: {
+    tag: "Mantenimiento",
+    title: "Facility",
+    desc: "Placeholder — próximamente galería real de proyectos de Facility entregados por YESAC.",
+    items: 6
+  },
+  estructura: {
+    tag: "Estructura",
+    title: "Fabricación e Instalación de Estructura",
+    desc: "Placeholder — próximamente galería real de proyectos de estructura entregados por YESAC.",
+    items: 6
+  }
+};
+
+const svcOverlay = document.getElementById("svcModalOverlay");
+const svcTrack = document.getElementById("svcModalTrack");
+const svcDots = document.getElementById("svcModalDots");
+const svcTag = document.getElementById("svcModalTag");
+const svcTitle = document.getElementById("svcModalTitle");
+const svcDesc = document.getElementById("svcModalDesc");
+let svcIndex = 0;
+let svcSlideCount = 0;
+
+function svcRenderSlide(){
+  svcTrack.style.transform = `translateX(-${svcIndex * 100}%)`;
+  svcDots.querySelectorAll(".svc-modal-dot").forEach((d,i)=>d.classList.toggle("active", i===svcIndex));
+}
+
+function svcOpenModal(key){
+  const data = svcCatalog[key];
+  if(!data) return;
+  svcTag.textContent = data.tag;
+  svcTitle.textContent = data.title;
+  svcDesc.textContent = data.desc;
+  svcTrack.innerHTML = "";
+  svcDots.innerHTML = "";
+  svcSlideCount = data.items;
+  for(let i=1;i<=data.items;i++){
+    const slide = document.createElement("div");
+    slide.className = "svc-modal-slide";
+    slide.innerHTML = `<img src="https://placehold.co/900x506/220E4A/ffffff?text=${encodeURIComponent(data.title)}+%E2%80%94+Proyecto+${i}" alt="${data.title} — Proyecto placeholder ${i}"><div class="svc-modal-slide-cap">Proyecto ${i} · Placeholder</div>`;
+    svcTrack.appendChild(slide);
+    const dot = document.createElement("button");
+    dot.className = "svc-modal-dot";
+    dot.setAttribute("aria-label", `Ir al proyecto ${i}`);
+    dot.addEventListener("click", ()=>{svcIndex=i-1; svcRenderSlide();});
+    svcDots.appendChild(dot);
+  }
+  svcIndex = 0;
+  svcRenderSlide();
+  svcOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function svcCloseModal(){
+  svcOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".svc-card").forEach(card=>{
+  const key = card.getAttribute("data-svc");
+  card.addEventListener("click", ()=>svcOpenModal(key));
+  card.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); svcOpenModal(key); }
+  });
+});
+
+document.getElementById("svcModalClose").addEventListener("click", svcCloseModal);
+svcOverlay.addEventListener("click", (e)=>{ if(e.target === svcOverlay) svcCloseModal(); });
+document.addEventListener("keydown", (e)=>{
+  if(!svcOverlay.classList.contains("open")) return;
+  if(e.key === "Escape") svcCloseModal();
+  if(e.key === "ArrowRight") { svcIndex = (svcIndex+1) % svcSlideCount; svcRenderSlide(); }
+  if(e.key === "ArrowLeft") { svcIndex = (svcIndex-1+svcSlideCount) % svcSlideCount; svcRenderSlide(); }
+});
+document.getElementById("svcModalNext").addEventListener("click", ()=>{ svcIndex = (svcIndex+1) % svcSlideCount; svcRenderSlide(); });
+document.getElementById("svcModalPrev").addEventListener("click", ()=>{ svcIndex = (svcIndex-1+svcSlideCount) % svcSlideCount; svcRenderSlide(); });
 </script>
 </body>
 </html>
